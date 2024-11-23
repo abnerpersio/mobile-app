@@ -1,7 +1,15 @@
 module.exports = {
-  arrowParens: 'avoid',
-  bracketSameLine: true,
-  bracketSpacing: false,
+  printWidth: 100,
+  tabWidth: 2,
+  semi: true,
   singleQuote: true,
   trailingComma: 'all',
+  arrowParens: 'always',
+  parser: 'typescript',
+  endOfLine: 'lf',
+  bracketSpacing: true,
+  useTabs: false,
+  importOrder: ['<THIRD_PARTY_MODULES>', '^@(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
 };
