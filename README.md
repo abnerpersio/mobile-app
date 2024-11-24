@@ -1,3 +1,5 @@
 ### Mobile app
 
-My first developed mobile app. Built with React Native, Typescript
+My first developed mobile app. 
+
+Built with React Native and Typescript

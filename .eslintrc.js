@@ -7,4 +7,7 @@ module.exports = {
     'prettier',
     'eslint-config-prettier',
   ],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+  },
 };
