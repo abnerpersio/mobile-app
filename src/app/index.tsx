@@ -1,52 +1,54 @@
-import React, { useRef, useState } from 'react';
-import { SafeAreaView, StatusBar, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, RefreshControl, SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
-import { Button } from '../components/button';
-import { Input } from '../components/input';
-import { TextArea } from '../components/text-area';
+
+const posts = Array.from({ length: 35 }, (_, index) => ({
+  id: Math.random(),
+  title: `Post #${index + 1}`,
+}));
 
 export default function App() {
-  const passwordInputRef = useRef<TextInput>(null);
+  const [refreshing, setIsRefreshing] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = () => {};
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsRefreshing(false);
+  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar animated barStyle="light-content" />
-
-      <KeyboardAvoidingView
+      <FlatList
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <TextArea />
-
-        <Input
-          value={email}
-          onChangeText={setEmail}
-          placeholder="E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoComplete="email"
-          autoCorrect={false}
-          returnKeyType="next"
-          onSubmitEditing={() => passwordInputRef.current?.focus()}
-        />
-
-        <Input
-          value={password}
-          onChangeText={setPassword}
-          ref={passwordInputRef}
-          placeholder="Senha"
-          secureTextEntry
-          onSubmitEditing={handleSubmit}
-          returnKeyType="done"
-        />
-
-        <Button onPress={handleSubmit}>Login</Button>
-      </KeyboardAvoidingView>
+        contentContainerStyle={styles.listContainer}
+        columnWrapperStyle={{ gap: 8 }}
+        refreshControl={
+          <RefreshControl
+            onRefresh={handleRefresh}
+            refreshing={refreshing}
+            // iOS
+            tintColor="purple"
+            title="Carregando..."
+            titleColor="purple"
+            // Android
+            colors={['purple']}
+            progressBackgroundColor="#f98"
+          />
+        }
+        numColumns={3}
+        data={posts}
+        keyExtractor={(post) => String(post.id)}
+        renderItem={({ item: post }) => (
+          <View key={post.id} style={styles.postContainer}>
+            <Text style={styles.postTitle}>{post.title}</Text>
+          </View>
+        )}
+        getItemLayout={(_, index) => ({
+          index,
+          length: 64 + 16,
+          offset: (64 + 16) * index,
+        })}
+      />
     </SafeAreaView>
   );
 }

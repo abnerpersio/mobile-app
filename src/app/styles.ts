@@ -7,11 +7,23 @@ export const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 24,
+    paddingVertical: 16,
     flex: 1,
-    justifyContent: 'center',
+  },
+  listContainer: {
     gap: 16,
   },
-  switch: {
-    marginRight: 'auto',
+  postContainer: {
+    backgroundColor: '#333',
+    borderRadius: 8,
+    height: 64,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  postTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
