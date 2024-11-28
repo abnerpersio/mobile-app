@@ -1,6 +1,6 @@
+import { forwardRef, useState } from 'react';
 import { TextInput, TextInputProps } from 'react-native';
 import { styles } from './styles';
-import { forwardRef, useState } from 'react';
 
 type InputProps = Omit<TextInputProps, 'editable' | 'multiline'>;
 

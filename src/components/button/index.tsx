@@ -1,13 +1,13 @@
-import { Pressable, PressableProps, Text, View } from 'react-native';
+import { Pressable, PressableProps, StyleProp, Text, View, ViewStyle } from 'react-native';
 import { styles } from './styles';
 
 type Props = Omit<PressableProps, 'style'> & {
-  onPress: () => void;
   children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
 export function Button(props: Props) {
-  const { onPress, disabled, children, ...restProps } = props;
+  const { style, disabled, children, ...restProps } = props;
 
   return (
     <View style={styles.buttonWrapper}>
@@ -20,6 +20,7 @@ export function Button(props: Props) {
           styles.button,
           pressed && styles.buttonActive,
           disabled && styles.buttonDisabled,
+          style,
         ]}
         {...restProps}
       >
