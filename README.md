@@ -1,4 +1,4 @@
-### Mobile app
+## Mobile app
 
 My first developed mobile app. 
 
