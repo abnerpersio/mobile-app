@@ -10,6 +10,6 @@ module.exports = {
   bracketSpacing: true,
   useTabs: false,
   importOrder: ['<THIRD_PARTY_MODULES>', '^@(.*)$', '^[./]'],
-  importOrderSeparation: true,
+  importOrderSeparation: false,
   importOrderSortSpecifiers: true,
 };
